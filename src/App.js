@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import React, { useEffect } from 'react';
 import Navbar from './frontend/component/NavBar';
 import SignUp from './frontend/component/SignUp';
+import SignUpList from './frontend/component/SignUpList'
 
 
 
@@ -24,7 +25,7 @@ useEffect(() => {
 
 const Layout = () => {
   const location = useLocation();
-  const hideNavBarPaths = ["/SignUp"];
+  const hideNavBarPaths = ["/SignUp", "SignUpList"];
 
   const hideNavBar = hideNavBarPaths.includes(location.pathname)
 
@@ -33,6 +34,7 @@ const Layout = () => {
       {!hideNavBar && <Navbar />}
       <Routes>
         <Route path = '/SignUp' element = { <SignUp /> } />
+        <Route path = '/SignUpList' element = { <SignUpList /> } />
       </Routes>
     </>
   );
