@@ -10,7 +10,7 @@ import SignUpList from './frontend/component/SignUpList'
 function App() {
 
 useEffect(() => {
-  fetch("http://0.0.0.0:8001")
+  fetch("http://localhost:8080")
   .then(res => res.json())
   .then(data => console.log(data));
 
