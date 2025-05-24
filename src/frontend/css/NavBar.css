@@ -8,16 +8,17 @@
 }
 
 .nav-logo img {
-    width: 180px;
+    width: 150px;
     height: auto;
-    max-height: 90px;
+    max-height: 45px;
+    padding: 0px;
 }
 
 .nav-links {
     display: flex;
     gap: 20px;
     align-items: center;
-    margin-left: 500px;
+    margin-left: 30px;
 }
 
 .nav-links a {
