@@ -9,9 +9,10 @@ import SignUp from './frontend/component/SignUp';
 function App() {
 
 useEffect(() => {
-  fetch("http://localhost:8080/api")
-    .then(res => res.json())
-    .then(data => console.log(data));
+  fetch("http://0.0.0.0:8001")
+  .then(res => res.json())
+  .then(data => console.log(data));
+
   }, []);
   
   return (
