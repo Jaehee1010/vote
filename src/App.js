@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navbar from './frontend/component/NavBar';
 import SignUp from './frontend/component/SignUp';
 import SignUpList from './frontend/component/SignUpList'
+import Main from './frontend/page/Main';
 
 
 
@@ -35,6 +36,7 @@ const Layout = () => {
       <Routes>
         <Route path = '/SignUp' element = { <SignUp /> } />
         <Route path = '/SignUpList' element = { <SignUpList /> } />
+        <Route path="/Main" element={<Main />} />
       </Routes>
     </>
   );
