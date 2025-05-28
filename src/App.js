@@ -4,6 +4,7 @@ import Navbar from './frontend/component/NavBar';
 import SignUp from './frontend/component/SignUp';
 import SignUpList from './frontend/component/SignUpList'
 import Main from './frontend/page/Main';
+import Voter from './frontend/page/Voter';
 
 
 
@@ -37,6 +38,7 @@ const Layout = () => {
         <Route path = '/SignUp' element = { <SignUp /> } />
         <Route path = '/SignUpList' element = { <SignUpList /> } />
         <Route path="/Main" element={<Main />} />
+        <Route path='/Voter' element={<Voter />} />
       </Routes>
     </>
   );

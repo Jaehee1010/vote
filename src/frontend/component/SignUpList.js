@@ -14,7 +14,7 @@ const SignUpList = () => {
             console.log(data);
             setList(data);
         } catch (err) {
-            console.error("후보자 목록 불러오기 실패", err);
+            console.error("후보자 목록 불러오기 실패했습니다.", err);
         }
     };
 
