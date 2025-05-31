@@ -5,18 +5,12 @@ import SignUp from './frontend/component/SignUp';
 import SignUpList from './frontend/component/SignUpList'
 import Main from './frontend/page/Main';
 import Voter from './frontend/page/Voter';
+import API from '../src/frontend/page/API';
 
 
 
 
 function App() {
-
-useEffect(() => {
-  fetch("http://localhost:8080")
-  .then(res => res.json())
-  .then(data => console.log(data));
-
-  }, []);
   
   return (
     <BrowserRouter>
@@ -34,6 +28,7 @@ const Layout = () => {
   return (
     <>
       {!hideNavBar && <Navbar />}
+      <API/>
       <Routes>
         <Route path = '/SignUp' element = { <SignUp /> } />
         <Route path = '/SignUpList' element = { <SignUpList /> } />
