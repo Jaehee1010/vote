@@ -22,20 +22,20 @@ function Main() {
 
       <h2 className="section-title">21대 대통령 선거 후보자</h2>
 
-      <div className="candidate-grid">
-        {candidates.map((c) => (
-          <div key={c.id} className="candidate-wrapper">
-            <div
-              className={`candidate-card ${selectedId === c.id ? 'selected' : ''}`}
-              onClick={() => setSelectedId(c.id)}
-            >
-              <img src={c.image} alt={c.name} />
-            </div>
-            <div className="candidate-label">
-              기호 {c.number}번 {c.name}
-            </div>
+      <div className="candidate-scroll-wrapper">
+        <div className="candidate-scroll-inner">
+         {candidates.map((c) => (
+          <div key={c.id} className="candidate-wrapper" onClick={() => setSelectedId(c.id)}>
+           <div className={`candidate-card ${selectedId === c.id ? 'selected' : ''}`}>
+            <img src={c.image} alt={`${c.name} 후보자`} />
           </div>
-        ))}
+        <div className={`candidate-label ${selectedId === c.id ? 'selected' : ''}`}>
+          기호 {c.number}번 {c.name}
+        </div>
+      </div>
+))}
+
+        </div>
       </div>
 
       <div className="vote-box">
@@ -52,11 +52,6 @@ function Main() {
           </div>
         </div>
       </div>
-
-      <footer className="footer">
-        © 2025, Made by K-Digital Training 3기<br />
-        Team: "삼삼오오" Members: 김석진, 이재희, 최찬희, 함영준
-      </footer>
     </div>
   );
 }
