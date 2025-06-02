@@ -6,6 +6,8 @@ import SignUpList from './frontend/component/SignUpList'
 import Main from './frontend/page/Main';
 import Voter from './frontend/page/Voter';
 import API from '../src/frontend/page/API';
+import Pledge from './frontend/page/Pledge';
+import Footer from './frontend/component/Footer'
 
 
 
@@ -21,20 +23,26 @@ function App() {
 
 const Layout = () => {
   const location = useLocation();
-  const hideNavBarPaths = ["/SignUp", "SignUpList"];
+  const hiddenPaths = ["/SignUp", "SignUpList"];
 
-  const hideNavBar = hideNavBarPaths.includes(location.pathname)
+  const isHidden = hiddenPaths.includes(location.pathname);
 
   return (
     <>
-      {!hideNavBar && <Navbar />}
-      <API/>
+      {!isHidden && <Navbar />}
       <Routes>
-        <Route path = '/SignUp' element = { <SignUp /> } />
-        <Route path = '/SignUpList' element = { <SignUpList /> } />
-        <Route path="/Main" element={<Main />} />
-        <Route path='/Voter' element={<Voter />} />
+        <Route path="/" element={
+          <>
+            <API />
+            <Main />
+          </>
+        } />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/SignUpList" element={<SignUpList />} />
+        <Route path="/Voter" element={<Voter />} />
+        <Route path="/Pledge" element={<Pledge />} />
       </Routes>
+      {!isHidden && <Footer />}
     </>
   );
 };

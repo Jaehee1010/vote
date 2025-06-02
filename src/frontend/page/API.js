@@ -43,11 +43,6 @@ function AdminPanel() {
       setStatus(err.response?.data || '에러 발생');
     }
   };
-
-  
-  return (
-    <Main/>
-  )
 }
 
 export default AdminPanel;
