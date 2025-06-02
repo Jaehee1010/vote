@@ -7,7 +7,9 @@ const Navbar = () => {
     return(
         <nav className="navbar">
             <div className="nav-logo">
-                <img src = {logo} alt="logo"></img>
+                <Link to="/">
+                    <img src = {logo} alt="logo"></img>
+                </Link>
             </div>
             <div className="nav-links">
                 <Link to = "/Pledge">후보자 공약</Link>
