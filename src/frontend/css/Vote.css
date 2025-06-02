@@ -17,7 +17,7 @@
 
 .vote-page-grid {
   display: flex;
-  flex-wrap: nowrap;           
+  flex-wrap: nowrap;
   justify-content: space-between;
   gap: 40px;
   align-items: flex-start;
@@ -27,8 +27,8 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 36px;
-  flex: 1 1 58%;              
-  max-width: 58%;              
+  flex: 1 1 58%;
+  max-width: 58%;
   margin-bottom: 40px;
 }
 
@@ -70,8 +70,8 @@
 }
 
 .vote-form-box {
-  flex: 1 1 40%;               
-  max-width: 40%;              
+  flex: 1 1 40%;
+  max-width: 40%;
   border: 2px solid #ccc;
   border-radius: 12px;
   padding: 20px;
@@ -143,14 +143,4 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-.footer {
-  font-size: 11px;
-  color: #999;
-  text-align: center;
-  border-top: 1px solid #eee;
-  padding: 8px 0;
-  margin-top: 30px;
-  line-height: 1.4;
 }
