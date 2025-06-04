@@ -1,0 +1,68 @@
+.admin-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f6f6f6;
+    }
+
+.admin-card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+  padding: 40px 5px 60px 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 70px;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 10px;
+  text-decoration-color: #D6D6D6;
+}
+
+.admin-card form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.admin-label {
+  width: 80%;
+  margin-bottom: 8px;
+  text-align: left;
+  margin-left: 27px; 
+}
+
+.admin-input {
+  width: 80%;
+  padding: 14px 12px;
+  border: 1px solid #D6D6D6;
+  border-radius: 10px;
+  font-size: 12px;
+  margin: 0 auto; 
+}
+
+.admin-input-group {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.admin-button {
+  width: 50%;
+  background-color: #FFFFFF;
+  font-size: 16px;
+  border-color: #F6F6F6;
+  border-radius: 10px;
+  box-shadow: none;
+  border: 1px solid #D6D6D6;
+  margin: 45px auto 0 auto;
+  display: block;
+}

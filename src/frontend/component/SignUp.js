@@ -47,7 +47,7 @@ const SignUp = () => {
       if (data.success) {
         alert("후보자 등록 성공했습니다.");
       } else {
-        alert("후보자 등록 실패했습니다. " + data.message);
+        alert(`${name} 후보자는 이미 등록된 후보자입니다.`);
       }
     } catch (err) {
       console.error(err);
