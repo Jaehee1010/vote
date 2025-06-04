@@ -16,28 +16,28 @@ const CandidateList = () => {
             }
         });
 
-      const raw = await res.text();                
-      const parsed = JSON.parse(raw);               
-      const data = typeof parsed === "string"       
-        ? JSON.parse(parsed)
-        : parsed;
+        const raw = await res.text();                
+        const parsed = JSON.parse(raw);               
+        const data = typeof parsed === "string"       
+            ? JSON.parse(parsed)
+            : parsed;
 
-      console.log("최종 데이터:", data);
-      console.log("Array.isArray(data):", Array.isArray(data));
+        console.log("최종 데이터:", data);
+        console.log("Array.isArray(data):", Array.isArray(data));
 
-      if (Array.isArray(data)) {
-        setCandidates(data);
-      } else {
-        alert("후보자 목록이 배열 형식이 아닙니다.");
-        console.warn("예상치 못한 응답 형식", data);
-      }
-    } catch (err) {
-      console.error("후보자 목록 불러오기 실패", err);
-      alert("네트워크 오류 또는 서버 문제");
-    }
-  };
+        if (Array.isArray(data)) {
+            setCandidates(data);
+        } else {
+            alert("후보자 목록이 배열 형식이 아닙니다.");
+            console.warn("예상치 못한 응답 형식", data);
+        }
+        } catch (err) {
+        console.error("후보자 목록 불러오기 실패", err);
+        alert("네트워크 오류 또는 서버 문제");
+        }
+    };
 
-  fetchCandidates();
+    fetchCandidates();
 }, []);
 
     const handleDelete = async (candidateId) => {
