@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import '../css/Main.css';
 
 const candidates = [
-  { id: 1, name: "이재명", number: 1, image: "/images/크리스범스테드.jpg" },
-  { id: 2, name: "김문수", number: 2, image: "/images/크리스범스테드.jpg" },
-  { id: 4, name: "이준석", number: 4, image: "/images/크리스범스테드.jpg" },
-  { id: 5, name: "권영국", number: 5, image: "/images/크리스범스테드.jpg" },
-  { id: 7, name: "황교안", number: 7, image: "/images/크리스범스테드.jpg" },
-  { id: 8, name: "송진모", number: 8, image: "/images/크리스범스테드.jpg" },
+  { id: 1, name: "이재명", number: 1, image: "/images/이재명프로필.png" },
+  { id: 2, name: "김문수", number: 2, image: "/images/김문수프로필.png" },
+  { id: 4, name: "이준석", number: 4, image: "/images/이준석프로필.png" },
+  { id: 5, name: "권영국", number: 5, image: "/images/권영국프로필.png" },
+  { id: 7, name: "황교안", number: 7, image: "/images/황교안프로필.png" },
+  { id: 8, name: "송진호", number: 8, image: "/images/송진호프로필.png" },
 ];
 
 function Main() {

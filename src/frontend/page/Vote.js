@@ -1,19 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Vote.css';
-
-const candidates = [
-  { id: 1, name: "이재명", number: 1, image: "/images/아놀드.jpg" },
-  { id: 2, name: "김문수", number: 2, image: "/images/아놀드.jpg" },
-  { id: 3, name: "이준석", number: 3, image: "/images/아놀드.jpg" },
-  { id: 4, name: "권영국", number: 4, image: "/images/크리스범스테드.jpg" },
-  { id: 5, name: "황교안", number: 5, image: "/images/크리스범스테드.jpg" },
-  { id: 6, name: "송진모", number: 6, image: "/images/크리스범스테드.jpg" },
-];
 
 const Vote = () => {
   const [voterName, setVoterName] = useState('');
   const [residentId, setResidentId] = useState('');
   const [candidateName, setCandidateName] = useState('');
+  const [candidates, setCandidates] = useState([]);
+
+  useEffect(() => {
+    const fetchCandidates = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/api/SignUpList");
+        const data = await response.json();
+        setCandidates(data);
+      } catch (error) {
+        console.error("후보자 목록 불러오기 실패:", error);
+        alert("후보자 목록을 불러오지 못했습니다.");
+      }
+    };
+
+    fetchCandidates();
+  }, []);
 
   const handleSubmit = async () => {
     let message = '';
@@ -74,13 +81,13 @@ const Vote = () => {
 
       <div className="vote-page-grid">
         <div className="candidate-grid">
-          {candidates.map((c) => (
-            <div key={c.id} className="candidate-wrapper">
-              <div className="candidate-card">
-                <img src={c.image} alt={c.name} />
+          {candidates.map((c, index) => (
+            <div key={index} className="candidate-wrapper">
+              <div className="candidate-card" onClick={() => setCandidateName(c.name)}>
+                <img src={c.image || "/images/default.png"} alt={c.name} />
               </div>
               <div className="candidate-label">
-                기호 {c.number}번 {c.name}
+                기호 {c.number}번 {c.name} ({c.party})
               </div>
             </div>
           ))}
