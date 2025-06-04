@@ -8,6 +8,11 @@ import Voter from './frontend/page/Voter';
 import API from '../src/frontend/page/API';
 import Pledge from './frontend/page/Pledge';
 import Footer from './frontend/component/Footer'
+import AdminLogin from './frontend/admin/AdminLogin';
+import SystemInit from './frontend/admin/SystemInit';
+import RegisterCandidate from './frontend/admin/RegisterCandidate';
+import CandidateList from './frontend/admin/CandidateList';
+
 
 
 
@@ -23,13 +28,12 @@ function App() {
 
 const Layout = () => {
   const location = useLocation();
-  const hiddenPaths = ["/SignUp", "SignUpList"];
+  const isAdminPath = location.pathname.startsWith("/admin");
 
-  const isHidden = hiddenPaths.includes(location.pathname);
 
   return (
     <>
-      {!isHidden && <Navbar />}
+      {!isAdminPath && <Navbar />}
       <Routes>
         <Route path="/" element={
           <>
@@ -41,8 +45,14 @@ const Layout = () => {
         <Route path="/SignUpList" element={<SignUpList />} />
         <Route path="/Voter" element={<Voter />} />
         <Route path="/Pledge" element={<Pledge />} />
+
+        {/* 아래는 관리자 전용 페이지들 */}
+        <Route path="/admin/AdminLogin" element={<AdminLogin />} />
+        <Route path="/admin/SystemInit" element={<SystemInit />} />
+        <Route path="/admin/RegisterCandidate" element={<RegisterCandidate />} />
+        <Route path="/admin/CandidateList" element={<CandidateList />} />
       </Routes>
-      {!isHidden && <Footer />}
+      {!isAdminPath && <Footer />}
     </>
   );
 };

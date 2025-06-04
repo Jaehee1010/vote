@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBan } from "react-icons/fa";
 import '../css/SignUpList.css';
 
+
 const SignUpList = () => {
   const [list, setList] = useState([]);
 
