@@ -5,6 +5,7 @@ import SignUp from './frontend/component/SignUp';
 import SignUpList from './frontend/component/SignUpList'
 import Main from './frontend/page/Main';
 import Voter from './frontend/page/Voter';
+import Vote from './frontend/page/Vote';
 import API from '../src/frontend/page/API';
 import Pledge from './frontend/page/Pledge';
 import Footer from './frontend/component/Footer'
@@ -12,6 +13,7 @@ import AdminLogin from './frontend/admin/AdminLogin';
 import SystemInit from './frontend/admin/SystemInit';
 import RegisterCandidate from './frontend/admin/RegisterCandidate';
 import CandidateList from './frontend/admin/CandidateList';
+
 
 
 
@@ -45,6 +47,7 @@ const Layout = () => {
         <Route path="/SignUpList" element={<SignUpList />} />
         <Route path="/Voter" element={<Voter />} />
         <Route path="/Pledge" element={<Pledge />} />
+        <Route path="/Vote" element={<Vote />} />
 
         {/* 아래는 관리자 전용 페이지들 */}
         <Route path="/admin/AdminLogin" element={<AdminLogin />} />
