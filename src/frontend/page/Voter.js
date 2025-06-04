@@ -6,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 const Voter = () => {
     const [name, setName] = useState("");
     const [resident, setResident] = useState("");
-    const [address, setAddress] = useState("");
+    const [addr, setAddr] = useState("");
     const navigate = useNavigate();
 
     const openPostcode = () => {
         new window.daum.Postcode({
             oncomplete: (data) => {
-                setAddress(data.address);
+                setAddr(data.address);
             },
         }).open();
     };
@@ -34,7 +34,7 @@ const Voter = () => {
             message += "주민등록번호에 '-'를 포함해서 입력해주세요. 예: 123456-1234567\n";
         }
 
-        if (!address.trim()) {
+        if (!addr.trim()) {
             message += "주소를 입력해주세요.\n";
         }
 
@@ -46,13 +46,13 @@ const Voter = () => {
         
         const VoterData = {
             name,
-            resident,
-            address,
+            rrnSuffix: resident.split("-")[1],
+            addr,
         };
 
         console.log("서버에 전송할 JSON 데이터:", JSON.stringify(VoterData));
         try {
-            const response = await fetch("http://localhost:8080/api/Voter", {
+            const response = await fetch("http://192.168.56.101:8001/voter/registerVoter", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,17 +61,25 @@ const Voter = () => {
         });
 
         const data = await response.json();
-        if (data.success){
+        if (response.ok && data.success) {
             alert("유권자 등록 성공했습니다.");
             navigate("/Vote");
         } else {
-            alert("유권자 등록 실패했습니다. " + data.message);
+            const errorMessage = data.error || data.message || "";
+            const match = errorMessage.match(/유권자\s(.+?)[는은이]/);
+
+            if (match && match[1]) {
+                alert(`유권자 ${match[1]}은 이미 등록되어 있습니다.`);
+            } else {
+                alert("유권자 등록에 실패했습니다.");
+            }
         }
     } catch (err) {
         console.error(err);
-        alert("서버와 연결할 수 없습니다.")
+        alert("서버와 연결할 수 없습니다.");
     }
-};
+}
+
 return(
     <div className="signUp-container">
         <div className="signUp-card">
@@ -102,7 +110,7 @@ return(
                     <input 
                         type="text"
                         placeholder="주소를 입력해주세요."
-                        value={address}
+                        value={addr}
                         onClick={openPostcode}
                         readOnly
                         className="signUp-input"
