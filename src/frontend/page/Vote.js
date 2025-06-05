@@ -10,12 +10,19 @@ const Vote = () => {
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const response = await fetch("http://localhost:8080/api/SignUpList");
-        const data = await response.json();
-        setCandidates(data);
-      } catch (error) {
-        console.error("후보자 목록 불러오기 실패:", error);
-        alert("후보자 목록을 불러오지 못했습니다.");
+        const res = await fetch("http://192.168.56.101:8001/public/getAllCandidates");
+        const raw = await res.text();
+        const parsed = JSON.parse(raw);
+        const data = typeof parsed === 'string' ? JSON.parse(parsed) : parsed;
+
+        if (Array.isArray(data)) {
+          setCandidates(data);
+        } else {
+          alert("후보자 목록이 배열 형식이 아닙니다.");
+        }
+      } catch (err) {
+        console.error("후보자 목록 불러오기 실패", err);
+        alert("후보자 목록을 불러올 수 없습니다.");
       }
     };
 
@@ -38,7 +45,7 @@ const Vote = () => {
     }
 
     if (!candidateName.trim()) {
-      message += '후보자 이름을 입력해주세요.\n';
+      message += '후보자를 선택해주세요.\n';
     }
 
     if (message) {
@@ -46,28 +53,28 @@ const Vote = () => {
       return;
     }
 
-    const voteData = {
-      voterName,
-      residentId,
-      candidateName,
-    };
+    const rrnSuffix = residentId.split('-')[1]; // 주민등록번호 뒷자리 추출
 
-    console.log("서버에 전송할 투표 데이터:", voteData);
+    const query = new URLSearchParams({
+      voterName: voterName,
+      rrnSuffix: rrnSuffix,
+      candidateName: candidateName,
+    });
 
     try {
-      const response = await fetch("http://localhost:8080/api/Vote", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(voteData),
+      const response = await fetch(`http://192.168.56.101:8001/voter/vote?${query.toString()}`, {
+        method: 'GET',
       });
 
       const data = await response.json();
-      if (data.success) {
+
+      if (response.ok) {
         alert("투표가 완료되었습니다.");
+        setVoterName('');
+        setResidentId('');
+        setCandidateName('');
       } else {
-        alert("투표 실패: " + data.message);
+        alert("투표 실패: " + (data.message || data.error));
       }
     } catch (err) {
       console.error(err);
@@ -77,17 +84,20 @@ const Vote = () => {
 
   return (
     <div className="vote-container">
-      <h2 className="section-title">21대 대통령 선거 후보자</h2>
+      <h3 className="section-title">21대 대통령 선거 후보자</h3>
 
       <div className="vote-page-grid">
         <div className="candidate-grid">
           {candidates.map((c, index) => (
             <div key={index} className="candidate-wrapper">
-              <div className="candidate-card" onClick={() => setCandidateName(c.name)}>
+              <div
+                className={`candidate-card ${candidateName === c.name ? 'selected' : ''}`}
+                onClick={() => setCandidateName(c.name)}
+              >
                 <img src={c.image || "/images/default.png"} alt={c.name} />
               </div>
               <div className="candidate-label">
-                기호 {c.number}번 {c.name} ({c.party})
+                기호 {c.candidateId || c.id}번 {c.name} ({c.partyName})
               </div>
             </div>
           ))}
@@ -120,9 +130,9 @@ const Vote = () => {
             <label>후보자</label>
             <input
               type="text"
-              placeholder="후보자 이름을 입력해주세요."
+              placeholder="후보자 카드를 클릭해서 선택해주세요."
               value={candidateName}
-              onChange={(e) => setCandidateName(e.target.value)}
+              readOnly
             />
 
             <button className="submit-button" onClick={handleSubmit}>
