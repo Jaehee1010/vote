@@ -67,32 +67,34 @@ const CandidateList = () => {
     return (
         <div className="page-container">
             <Sidebar />
-            <div className="signUpList-wrapper">
-                <h2 className="signUpList-title">후보자 목록</h2>
-            <table className="signUpList-table">
-                <thead>
-                    <tr>
-                    <th>기호 번호</th>
-                    <th>소속정당명</th>
-                    <th>후보자 이름</th>
-                    <th>등록 취소</th>
-                    </tr>
-                </thead>
-            <tbody>
-                {candidates.map((c) => (
-                    <tr key={c.id}>
-                    <td>{c.id}</td>
-                    <td>{c.partyName}</td>
-                    <td>{c.name}</td>
-                    <td>
-                        <FaBan className="ban-icon" onClick={() => handleDelete(c.id)} />
-                    </td>
-                    </tr>
-                ))}
-            </tbody>
-            </table>
+            <div className="candidateList-wrapper">
+                <div className="candidateList-card">
+                    <h2 className="candidateList-title">후보자 목록</h2>
+                    <table className="candidateList-table">
+                        <thead>
+                            <tr>
+                            <th>기호 번호</th>
+                            <th>소속정당명</th>
+                            <th>후보자 이름</th>
+                            <th>등록 취소</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {candidates.map((c) => (
+                                <tr key={c.id}>
+                                <td>{c.id}</td>
+                                <td>{c.partyName}</td>
+                                <td>{c.name}</td>
+                                <td>
+                                    <FaBan className="ban-icon" onClick={() => handleDelete(c.id)} />
+                                </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-    </div>
     );
 };
 

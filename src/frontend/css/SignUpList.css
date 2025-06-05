@@ -8,43 +8,49 @@
 
 .signUpList-card {
   background-color: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 12px;
+  padding: 40px 60px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 600px;
-  padding: 40px 5px 60px 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .signUpList-title {
   text-align: center;
-  font-size: 24px;
-  margin-bottom: 70px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 30px;
   text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 10px;
-  text-decoration-color: #D6D6D6;
+  text-underline-offset: 6px;
+  text-decoration-color: #ddd;
 }
 
 .signUpList-table {
-  width: 90%;
+  width: 100%;
   border-collapse: collapse;
+  font-size: 14px;
   text-align: center;
-  table-layout: fixed;
 }
 
 .signUpList-table th,
-.signUpList-table tr,
 .signUpList-table td {
-  border: 1px solid #D6D6D6;
-  border-left: none;
-  border-right: none;
-  text-align: center;
-  padding: 20px;
+  padding: 14px 10px;
+  border-bottom: 1px solid #D6D6D6;
+}
+
+.signUpList-table th {
+  font-weight: bold;
+  background-color: #fafafa;
+  color: #333;
 }
 
 .ban-icon {
-  color: red;
   font-size: 16px;
+  color: red;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.ban-icon:hover {
+  transform: scale(1.2);
 }
