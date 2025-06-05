@@ -13,7 +13,9 @@ import AdminLogin from './frontend/admin/AdminLogin';
 import SystemInit from './frontend/admin/SystemInit';
 import RegisterCandidate from './frontend/admin/RegisterCandidate';
 import CandidateList from './frontend/admin/CandidateList';
-
+import RealTime from './frontend/admin/RealTime';
+import Products from './frontend/admin/Products';
+import ProducksList from './frontend/admin/ProducksList';
 
 
 
@@ -54,6 +56,9 @@ const Layout = () => {
         <Route path="/admin/SystemInit" element={<SystemInit />} />
         <Route path="/admin/RegisterCandidate" element={<RegisterCandidate />} />
         <Route path="/admin/CandidateList" element={<CandidateList />} />
+        <Route path="/admin/RealTime" element={<RealTime />} />
+        <Route path='admin/Products' element={<Products />} />
+        <Route path='admin/ProductsList' element={<ProducksList />} />
       </Routes>
       {!isAdminPath && <Footer />}
     </>

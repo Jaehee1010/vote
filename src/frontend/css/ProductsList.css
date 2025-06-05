@@ -1,17 +1,17 @@
-.page-container {
+.producksListPage-container {
     display: flex;
     height: 100vh;
     background-color: #f6f6f6;
 }
 
-.candidateList-wrapper {
+.producksList-wrapper {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.candidateList-card {
+.producksList-card {
     background-color: #fff;
     padding: 70px 40px;
     border-radius: 12px;
@@ -24,7 +24,7 @@
     align-items: center; 
 }
 
-.candidateList-title {
+.producksList-title {
     font-size: 16px;
     font-weight: normal;
     text-decoration: underline;
@@ -33,20 +33,39 @@
     margin-bottom: 25px;
 }
 
-.candidateList-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
+.producksList-table {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 14px;
 }
 
-.candidateList-table th,
-.candidateList-table td {
+.producksList-table th,
+.producksList-table td {
   padding: 14px 12px;
-  text-align: center;
   border-bottom: 1px solid #eee;
 }
 
-.candidateList-table th {
+/* 컬럼별 정렬 지정 */
+.producksList-table th:nth-child(1),
+.producksList-table td:nth-child(1) {
+  text-align: center; /* 상품 ID */
+}
+
+.producksList-table th:nth-child(2),
+.producksList-table td:nth-child(2) {
+  text-align: center;   /* 상품명: 왼쪽 정렬 */
+  padding-right: 50px;
+  word-break: break-word;
+}
+
+.producksList-table th:nth-child(3),
+.producksList-table td:nth-child(3) {
+  text-align: center; /* 삭제 아이콘 */
+}
+
+.producksList-table th {
   font-weight: bold;
   color: #444;
   background-color: #fafafa;
