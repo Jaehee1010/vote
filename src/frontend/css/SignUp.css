@@ -1,69 +1,88 @@
-.signUp-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #F6F6F6;
+.register-page {
+    display: flex;
+    height: 100vh;
+    background-color: #f6f6f6;
 }
 
-.signUp-card {
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 600px;
-  padding: 40px 5px 60px 5px;
+.register-form-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.signUp-title {
-  text-align: center;
-  font-size: 24px;
-  margin-bottom: 70px;
-  text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 10px;
-  text-decoration-color: #D6D6D6;
+.register-card {
+    background-color: #fff;
+    padding: 70px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 500px; 
+    height: 400px;
+    display: flex;               
+    flex-direction: column;       
+    align-items: center; 
 }
 
-.signUp-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 16px;
+.register-title {
+    font-size: 16px;
+    font-weight: normal;
+    text-decoration: underline;
+    text-decoration-color: #ccc;
+    text-underline-offset: 6px;
+    margin-bottom: 25px;
 }
 
-.signUp-label {
-  width: 63%;
-  margin-bottom: 4px;
-  font-size: 14px;
-  text-align: left;
+.register-form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 450px;
+    margin: 0 auto ;
+    align-items: center;
 }
 
-.signUp-input {
-  width: 60%;
-  padding: 8px 12px;
-  border: 1px solid #D6D6D6;
-  border-radius: 10px;
-  font-size: 12px;
+.register-card input {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    
 }
 
-.signUp-input:focus {
-  outline: none;
-  box-shadow: none;
-  border-color: #888888;
+.register-input:focus {
+    outline: none;
+    box-shadow: none;
+    border-color: #888888;
 }
 
-.signUp-button {
-  width: 50%;
-  background-color: #FFFFFF;
-  font-size: 16px;
-  border-color: #F6F6F6;
-  border-radius: 10px;
-  box-shadow: none;
-  border: 1px solid #D6D6D6;
-  margin: 45px auto 0 auto;
-  display: block;
+.register-label {
+    display: block;
+    width: 100%;          
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: left;     
+    padding-left: 160px; 
 }
 
-.signUp-button:hover {
-  background-color: #F6F6F6;
+
+.register-button {
+    width: 100%;
+    max-width: 250px;
+    padding: 12px;
+    background-color: #FFFFFF;
+    border-color: #F6F6F6;
+    box-shadow: none;
+    border: 1px solid #D6D6D6;
+    border-radius: 8px;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #F6F6F6;
 }

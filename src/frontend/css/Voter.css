@@ -1,20 +1,29 @@
-.signUp-container {
+.voter.page {
+    display: flex;
+    height: 100vh;
+    background-color: #f6f6f6;
+}
+.voter-container {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background-color: #F6F6F6;
 }
 
-.signUp-card {
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 600px;
-    padding: 40px 5px 60px 5px;
+.voter-card {
+    background-color: #fff;
+    padding: 70px 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 500px; 
+    height: 400px;
+    display: flex;               
+    flex-direction: column;       
+    align-items: center; 
 }
 
-.signUp-title {
+.voter-title {
     text-align: center;
     font-size: 24px;
     margin-bottom: 70px;
@@ -25,22 +34,24 @@
 
 }
 
-.signUp-form {
+.voter-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 16px;
+    width: 500px;
 }
 
-.signUp-label {
-    width: 63%;
+.voter-label {
+    width: 59%;
     margin-bottom: 4px;
     font-size: 14px;
     text-align: left;
 }
 
-.signUp-input {
-    width: 60%;
+.voter-input {
+    width: 60% !important;
+    max-width: 380px; 
     padding: 8px 12px;
     border: 1px solid #D6D6D6;
     border-radius: 10px;
@@ -48,13 +59,13 @@
     
 }
 
-.signUp-input:focus {
+.voter-input:focus {
     outline: none;
     box-shadow: none;
     border-color: #888888;
 }
 
-.signUp-button {
+.voter-button {
     width: 50%;
     background-color: #FFFFFF;
     font-size: 16px;
@@ -66,6 +77,6 @@
     display: block;
 }
 
-.signUp-button:hover {
+.voter-button:hover {
     background-color: #F6F6F6;
 }
