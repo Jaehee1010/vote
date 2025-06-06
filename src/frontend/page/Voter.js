@@ -1,5 +1,5 @@
 import React, { use, useState }from "react";
-import '../css/SignUp.css'
+import '../css/Voter.css';
 import { useNavigate } from "react-router-dom";
 
 
@@ -46,13 +46,13 @@ const Voter = () => {
         
         const VoterData = {
             name,
-            rrnSuffix: resident.split("-")[1],
-            addr,
+            rrnFull: resident.replace(/-/g, ''),
+            address: addr
         };
 
         console.log("서버에 전송할 JSON 데이터:", JSON.stringify(VoterData));
         try {
-            const response = await fetch("http://192.168.56.101:8001/voter/registerVoter", {
+            const response = await fetch("http://192.168.56.101:8001/voter/registerVoterWithMySQL", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,17 +61,16 @@ const Voter = () => {
         });
 
         const data = await response.json();
-        if (response.ok && data.success) {
-            alert("유권자 등록 성공했습니다.");
+        console.log("서버 응답 데이터:", data);
+
+        if (response.ok) {
+            alert(data.message || "유권자 등록에 성공했습니다.");
             navigate("/Vote");
         } else {
-            const errorMessage = data.error || data.message || "";
-            const match = errorMessage.match(/유권자\s(.+?)[는은이]/);
-
-            if (match && match[1]) {
-                alert(`유권자 ${match[1]}은 이미 등록되어 있습니다.`);
+            if (data.error === "이미 등록된 유권자입니다.") {
+                alert("이미 등록된 유권자입니다.");
             } else {
-                alert("유권자 등록에 실패했습니다.");
+                alert(data.message || data.error || "유권자 등록에 실패했습니다.");
             }
         }
     } catch (err) {
@@ -81,45 +80,47 @@ const Voter = () => {
 }
 
 return(
-    <div className="signUp-container">
-        <div className="signUp-card">
-            <h1 className="signUp-title">유권자 등록</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="signUp-form">
-                    <label className="signUp-label">이름</label>
-                    <input 
-                        type="text"
-                        placeholder="이름을 입력해주세요."
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="signUp-input"
-                    />
-                </div>
-                <div className="signUp-form">
-                    <label className="signUp-label">주민등록번호</label>
-                    <input 
-                        type="text"
-                        placeholder="주민등록번호를 - 포함해서 입력해주세요."
-                        value={resident}
-                        onChange={(e) => setResident(e.target.value)}
-                        className="signUp-input"
-                    />
-                </div>
-                <div className="signUp-form">
-                    <label className="signUp-label">주소</label>
-                    <input 
-                        type="text"
-                        placeholder="주소를 입력해주세요."
-                        value={addr}
-                        onClick={openPostcode}
-                        readOnly
-                        className="signUp-input"
-                    />
-                </div>
-                <button type="submit" className="signUp-button">
-                    등록하기
-                </button>
-            </form>
+    <div className="voter-page">
+        <div className="voter-container">
+            <div className="voter-card">
+                <h1 className="voter-title">유권자 등록</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className="voter-form">
+                        <label className="voter-label">이름</label>
+                        <input 
+                            type="text"
+                            placeholder="이름을 입력해주세요."
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="voter-input"
+                        />
+                    </div>
+                    <div className="voter-form">
+                        <label className="voter-label">주민등록번호</label>
+                        <input 
+                            type="text"
+                            placeholder="주민등록번호를 - 포함해서 입력해주세요."
+                            value={resident}
+                            onChange={(e) => setResident(e.target.value)}
+                            className="voter-input"
+                        />
+                    </div>
+                    <div className="voter-form">
+                        <label className="voter-label">주소</label>
+                        <input 
+                            type="text"
+                            placeholder="주소를 입력해주세요."
+                            value={addr}
+                            onClick={openPostcode}
+                            readOnly
+                            className="voter-input"
+                        />
+                    </div>
+                    <button type="submit" className="voter-button">
+                        등록하기
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
     );
