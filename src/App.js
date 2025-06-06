@@ -8,6 +8,7 @@ import Voter from './frontend/page/Voter';
 import Vote from './frontend/page/Vote';
 import API from '../src/frontend/page/API';
 import Pledge from './frontend/page/Pledge';
+import Store from './frontend/page/Store';
 import Footer from './frontend/component/Footer'
 import AdminLogin from './frontend/admin/AdminLogin';
 import SystemInit from './frontend/admin/SystemInit';
@@ -50,6 +51,7 @@ const Layout = () => {
         <Route path="/Voter" element={<Voter />} />
         <Route path="/Pledge" element={<Pledge />} />
         <Route path="/Vote" element={<Vote />} />
+        <Route path="/Store" element={<Store />} />
 
         {/* 아래는 관리자 전용 페이지들 */}
         <Route path="/admin/AdminLogin" element={<AdminLogin />} />

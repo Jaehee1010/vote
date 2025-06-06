@@ -53,7 +53,7 @@ const Vote = () => {
       return;
     }
 
-    const rrnSuffix = residentId.split('-')[1]; // 주민등록번호 뒷자리 추출
+    const rrnSuffix = residentId.split('-')[1];
 
     const query = new URLSearchParams({
       voterName: voterName,
@@ -87,18 +87,17 @@ const Vote = () => {
       <h3 className="section-title">21대 대통령 선거 후보자</h3>
 
       <div className="vote-page-grid">
-        <div className="candidate-grid">
+        <div className="candidate-table">
+          <div className="candidate-table-title">후보자 목록</div>
           {candidates.map((c, index) => (
-            <div key={index} className="candidate-wrapper">
-              <div
-                className={`candidate-card ${candidateName === c.name ? 'selected' : ''}`}
-                onClick={() => setCandidateName(c.name)}
-              >
-                <img src={c.image || "/images/default.png"} alt={c.name} />
-              </div>
-              <div className="candidate-label">
-                기호 {c.candidateId || c.id}번 {c.name} ({c.partyName})
-              </div>
+            <div
+              key={index}
+              className={`table-row ${candidateName === c.name ? 'selected' : ''}`}
+              onClick={() => setCandidateName(c.name)}
+            >
+              <div>{c.candidateId || c.id}</div>
+              <div>{c.partyName}</div>
+              <div>{c.name}</div>
             </div>
           ))}
         </div>
@@ -106,10 +105,9 @@ const Vote = () => {
         <div className="vote-form-box">
           <img
             src="/images/투표마크.png"
-            alt="투표 박스"
+            alt="투표 마크"
             className="vote-form-image"
           />
-
           <div className="vote-form">
             <label>투표자</label>
             <input
@@ -130,7 +128,7 @@ const Vote = () => {
             <label>후보자</label>
             <input
               type="text"
-              placeholder="후보자 카드를 클릭해서 선택해주세요."
+              placeholder="후보자 행을 클릭해서 선택해주세요."
               value={candidateName}
               readOnly
             />
