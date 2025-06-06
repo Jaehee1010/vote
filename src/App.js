@@ -17,6 +17,7 @@ import CandidateList from './frontend/admin/CandidateList';
 import RealTime from './frontend/admin/RealTime';
 import Products from './frontend/admin/Products';
 import ProducksList from './frontend/admin/ProducksList';
+import VoteResult from './frontend/admin/VoteResult';
 
 
 
@@ -61,6 +62,7 @@ const Layout = () => {
         <Route path="/admin/RealTime" element={<RealTime />} />
         <Route path='admin/Products' element={<Products />} />
         <Route path='admin/ProductsList' element={<ProducksList />} />
+        <Route path='admin/VoteResult' element={<VoteResult />} />
       </Routes>
       {!isAdminPath && <Footer />}
     </>

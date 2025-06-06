@@ -11,8 +11,7 @@ const Sidebar = ({ selected }) => {
         { key: 'register', label: '후보자 등록', icon: '👤', path: '/admin/RegisterCandidate'},
         { key: 'list', label: '후보자 목록 조회', icon: '📄', path: '/admin/CandidateList'},
         { key: 'status', label: '투표 현황 조회', icon: '🔍', path: '/admin/RealTime'},
-        { key: 'result', label: '결과 조회', icon: '🔎'},
-        { key: 'manage', label: '후보자 관리', icon: '🔒'},
+        { key: 'voteResult', label: '결과 조회', icon: '📊', path: '/admin/voteResult'},
         { key: 'product', label: '상품 등록', icon: '🛒',  path: '/admin/Products'},
         { key: 'productsList', label: '상품 목록 조회', icon: '📄',  path: '/admin/ProductsList'}
     ];
