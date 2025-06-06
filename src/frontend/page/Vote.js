@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/Vote.css';
 
 const Vote = () => {
@@ -6,11 +7,12 @@ const Vote = () => {
   const [residentId, setResidentId] = useState('');
   const [candidateName, setCandidateName] = useState('');
   const [candidates, setCandidates] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCandidates = async () => {
       try {
-        const res = await fetch("http://192.168.56.101:8001/public/getAllCandidates");
+        const res = await fetch("http://192.168.56.101:8001/voter/getCandidates");
         const raw = await res.text();
         const parsed = JSON.parse(raw);
         const data = typeof parsed === 'string' ? JSON.parse(parsed) : parsed;
@@ -53,33 +55,36 @@ const Vote = () => {
       return;
     }
 
-    const rrnSuffix = residentId.split('-')[1];
+const rrnSuffix = residentId.split('-')[1]; 
 
-    const query = new URLSearchParams({
+try {
+  const response = await fetch(`http://192.168.56.101:8001/voter/vote`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
       voterName: voterName,
       rrnSuffix: rrnSuffix,
-      candidateName: candidateName,
-    });
+      candidateName: candidateName
+    })
+  });
 
-    try {
-      const response = await fetch(`http://192.168.56.101:8001/voter/vote?${query.toString()}`, {
-        method: 'GET',
-      });
+  const data = await response.json();
 
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("투표가 완료되었습니다.");
-        setVoterName('');
-        setResidentId('');
-        setCandidateName('');
-      } else {
-        alert("투표 실패: " + (data.message || data.error));
-      }
-    } catch (err) {
-      console.error(err);
-      alert("서버와 연결할 수 없습니다.");
-    }
+  if (response.ok) {
+    alert("투표가 완료되었습니다.");
+    setVoterName('');
+    setResidentId('');
+    setCandidateName('');
+    navigate('/');
+  } else {
+    alert("투표 실패: " + (data.message || data.error));
+  }
+} catch (err) {
+  console.error(err);
+  alert("서버와 연결할 수 없습니다.");
+}
   };
 
   return (
